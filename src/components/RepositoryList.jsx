@@ -1,39 +1,15 @@
-import { FlatList, View, StyleSheet } from 'react-native';
-import RepositoryItem from './RepositoryItem';
 import useRepositories from '../hooks/useRepositories';
-
-const styles = StyleSheet.create({
-  separator: {
-    height: 10,
-    backgroundColor: '#ddd'
-  },
-});
-
-const ItemSeparator = () => <View style={styles.separator} />;
+import RepositoryListContainer from './RepositoryListContainer';
+import { useState } from 'react';
 
 const RepositoryList = () => {
-  const { repositories } = useRepositories();
+  const [orderBy, setOrderBy] = useState('CREATED_AT');
+  const [orderDirection, setOrderDirection] = useState('DESC');
+  const [searchKeyword, setSearchKeyword] = useState('');
 
-  const repositoryNodes = repositories
-    ? repositories.edges.map(edge => edge.node)
-    : [];
+  const { repositories } = useRepositories({ orderBy, orderDirection, searchKeyword });
 
-
-  return (
-    <FlatList
-      data={repositoryNodes}
-      ItemSeparatorComponent={ItemSeparator}
-      renderItem={({item})=> <RepositoryItem 
-        fullName={item.fullName} 
-        description={item.description}
-        language={item.language} 
-        forksCount={item.forksCount} 
-        stargazersCount={item.stargazersCount}
-        ratingAverage={item.ratingAverage}
-        reviewCount={item.reviewCount}
-        ownerAvatarUrl={item.ownerAvatarUrl}
-      />}
-    />
-)};
+  return <RepositoryListContainer repositories={repositories} setOrderBy={setOrderBy} setOrderDirection={setOrderDirection} setSearchKeyword={setSearchKeyword}  />;
+};
 
 export default RepositoryList;

@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 10,
     flexDirection: 'row',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    paddingLeft: 20
   },
   avatar: {
     width: 66,
@@ -41,8 +42,7 @@ const HeaderSectioin = ({
           color='textWhite' 
           fontSize='subheading' 
           backgroundColor='primary' 
-          borderRadius='primary' 
-          style={{padding: 5}}
+          style={{padding: 5, borderRadius: 5 }}
         >
           {language}
         </Text>

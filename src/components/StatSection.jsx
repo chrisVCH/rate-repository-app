@@ -3,8 +3,7 @@ import ComboItems from './ComboItems';
 import { View, StyleSheet } from 'react-native';
 import Text from './Text';
 import theme from '../theme';
-
-const formatNumber = (num, precision = 1) => (num / 1000).toFixed(precision) + 'K';
+import formatNumber from '../utils/formatNumber';
 
 const styles = StyleSheet.create({
   stats: {
@@ -42,9 +41,9 @@ const StatSection = ({
         </ComboItems>
         <ComboItems>
           <Text 
-          style={{paddingBottom: 5}}
-          fontWeight='bold'
-          fontSize='subheading'
+            style={{paddingBottom: 5}}
+            fontWeight='bold'
+            fontSize='subheading'
           >
           {fkCount}
           </Text>

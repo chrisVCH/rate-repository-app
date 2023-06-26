@@ -1,9 +1,12 @@
 import React from 'react';
-//import Line from './Line';
 import StatSection from './StatSection';
 import HeaderSectioin from './HeaderSection';
+import { Pressable, View } from 'react-native';
+import GitHubView from './GitHubView';
+import { useNavigate } from 'react-router-native';
 
 const RepositoryItem = ({
+  id,
   fullName,
   description, 
   language, 
@@ -11,9 +14,16 @@ const RepositoryItem = ({
   stargazersCount,
   ratingAverage,
   reviewCount,
-  ownerAvatarUrl
-}) => (
+  ownerAvatarUrl,
+  repositoryId,
+  url
+}) => { 
+  const navigate = useNavigate();
+  
+  return (
   <>
+    <View testID="repositoryItem">
+    <Pressable onPress={() => navigate(`/github/${id}`)}>
     <HeaderSectioin 
       fullName={fullName}
       description={description}
@@ -26,7 +36,10 @@ const RepositoryItem = ({
       ratingAverage={ratingAverage}
       reviewCount={reviewCount}
     />
+    </Pressable>
+    { repositoryId !== '' && <GitHubView url={url} /> }
+    </View>
   </>
-);
+)};
 
 export default RepositoryItem;

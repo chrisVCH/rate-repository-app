@@ -1,12 +1,12 @@
 import { useMutation, useApolloClient } from "@apollo/client";
-import { USESR_LOG_IN } from "../../graphql/queries";
+import { USER_LOG_IN } from "../../graphql/queries";
 import { useAuthStorage } from "./useAuthStorage";
 
 const useSignIn = () => {
   const authStorage = useAuthStorage();
   const apolloClient = useApolloClient();
   
-  const [mutate, result] = useMutation(USESR_LOG_IN, {
+  const [mutate, result] = useMutation(USER_LOG_IN, {
     onError: (error) => {
       console.log('error...', error.message);
     },

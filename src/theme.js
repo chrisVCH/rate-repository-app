@@ -27,7 +27,7 @@ const theme = {
     bold: '700',
   },
   borderRadius: {
-    primary: 5
+    primary: 10
   }
 };
   
